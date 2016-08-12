@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Metro Route</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <style>
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        height: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <script>
+      var map;
+      function initMap() 
+      {
+
+        // defining coordinates 
+
+        var khanMarket = {lat: 28.602136, lng: 77.229249};
+        var JLN = {lat: 28.590417, lng: 77.233068};
+        var jangpura = {lat: 28.583333, lng: 77.239635};
+        var lajpathNagar = {lat: 28.571386, lng: 77.236287};
+        var moolchand = {lat: 28.565167, lng: 77.234098};
+        var kailashColony = {lat: 28.555408, lng: 77.241909};
+        var nehruPlace = {lat: 28.551405, lng: 77.251781};
+        var kalkaji = {lat: 28.549355, lng: 77.259395};
+        var govindpuri = {lat: 28.544428, lng: 77.264281};
+
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 14,
+          center: jangpura,
+        });
+
+
+        // Adding route
+
+        var routeCoordinates = [
+          khanMarket,
+          JLN, //JLN
+          jangpura, //Jangpura
+          lajpathNagar, //Lajpath Nagar
+          moolchand, //Moolchand
+          kailashColony, //Kailash Colony
+          nehruPlace, //Nehru Place
+          kalkaji, //kalkaji
+          govindpuri //govindpuri
+        ];
+
+
+        // Adding Polyline
+
+        var route = new google.maps.Polyline({
+          path: routeCoordinates,
+          geodesic: true,
+          strokeColor: '#ac00e6',
+          strokeOpacity: 1.0,
+          strokeWeight: 4
+        });
+
+      var khanMarketMarker = createMarker(khanMarket, "Khan Market Metro Station");
+      var jlnMarker = createMarker(JLN, "JLN Metro Station");
+      var jangpura = createMarker(jangpura, "Jangpura Metro Station");
+      var lajpathMarker = createMarker(lajpathNagar, "Lajpath Nagar Metro Station");
+      var moolchandMarker = createMarker(moolchand, "Moolchand Metro Station");
+      var kailashColonyMarker = createMarker(kailashColony, "Kailash Colony Metro Station");
+      var nehruPlaceMarker = createMarker(nehruPlace, "Nehru Place Metro Station");
+      var kalkajiMarker = createMarker(kalkaji, "Kalkaji Metro Station");
+      var govindpuriMarker = createMarker(govindpuri, "Govindpuri Metro Station");
+
+
+      function createMarker(pos, t)
+      {
+        var marker = new google.maps.Marker({
+          position: pos,
+          map: map,
+          title: t
+        });
+
+        var infowindow = new google.maps.InfoWindow({
+          content:t
+          });
+
+        google.maps.event.addListener(marker, 'click', function() {
+          infowindow.open(map,marker);
+          });
+      }  
+
+
+        route.setMap(map);
+
+        // Adding Markers
+
+        // var khanMarketMarker = new google.maps.Marker({
+        //   position: khanMarket,
+        //   map: map,
+        //   animation:google.maps.Animation.DROP,
+        //   title: 'Khan Market Metro Station'
+        // });
+
+        // var jlnMarker = new google.maps.Marker({
+        //   position: JLN,
+        //   map: map,
+        //   title: 'JLN Metro Station'
+        // });
+
+        // var jangpuraMarker = new google.maps.Marker({
+        //   position: jangpura,
+        //   map: map,
+        //   title: 'Jangpura Metro Station'
+        // });
+
+        // var lajpathMarker = new google.maps.Marker({
+        //   position: lajpathNagar,
+        //   map: map,
+        //   title: 'Lajpath Nagar Metro Station'
+        // });
+
+        // var moolchandMarker = new google.maps.Marker({
+        //   position: moolchand,
+        //   map: map,
+        //   title: 'Moolchand Metro Station'
+        // });
+
+        // var kailashColonyMarker = new google.maps.Marker({
+        //   position: kailashColony,
+        //   map: map,
+        //   title: 'Kailash Colony Station'
+        // });
+
+        // var nehruPlaceMarker = new google.maps.Marker({
+        //   position: nehruPlace,
+        //   map: map,
+        //   title: 'Nehru Place Metro Station'
+        // });
+
+        // var kalkajiMarker = new google.maps.Marker({
+        //   position: kalkaji,
+        //   map: map,
+        //   title: 'Kalkaji Metro Station'
+        // });
+
+        // var govindpuriMarker = new google.maps.Marker({
+        //   position: govindpuri,
+        //   map: map,
+        //   title: 'Govindpuri Metro Station'
+        // });
+
+      }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCgSUi4aKRQSyE9k69vVgcoqi5wzXt010E&callback=initMap"
+    async defer></script>
+  </body>
+</html>
